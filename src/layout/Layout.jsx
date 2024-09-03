@@ -1,15 +1,18 @@
+import { Outlet } from "react-router-dom";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 
 const Layout = () => {
     return (
-        <div>
+        <div className="max-w-[1200px] mx-auto">
             {/* nav */}
-                <h1>Hi</h1>
+                <Navbar></Navbar>
             {/* outlets */}
-
+                <Outlet></Outlet>
 
             {/* footer */}
-            
+            <Footer></Footer>
         </div>
     );
 };
