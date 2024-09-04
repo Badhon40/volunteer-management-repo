@@ -6,6 +6,9 @@ import Home from "../pages/home/Home";
 import ErrorPage from "../pages/error/ErrorPage";
 import NeedVolunteer from "../pages/needVolunteer/NeedVolunteer";
 import MyProfile from "../pages/myProfile/MyProfile";
+import AddVolunteerPage from "../pages/addVolunteerPage/AddVolunteerPage";
+import ManageMyPost from "../pages/manageMyPost/ManageMyPost";
+import Private from "../private/Private";
 
 
 const Routes = createBrowserRouter([
@@ -34,6 +37,14 @@ const Routes = createBrowserRouter([
             {
                 path:'/myProfile',
                 element:<MyProfile></MyProfile>
+            },
+            {
+                path:'/add-volunteer-post',
+                element:<Private><AddVolunteerPage></AddVolunteerPage></Private>
+            },
+            {
+                path:'/manage-my-post',
+                element:<Private><ManageMyPost></ManageMyPost></Private>
             }
         ]
     }

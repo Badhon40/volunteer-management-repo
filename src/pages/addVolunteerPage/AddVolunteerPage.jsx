@@ -1,6 +1,5 @@
 
-
-const Home = () => {
+const AddVolunteerPage = () => {
     return (
         <div>
             
@@ -8,4 +7,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default AddVolunteerPage;

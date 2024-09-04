@@ -32,14 +32,32 @@ const Navbar = () => {
             <NavLink to='/needVolunteer'>Need Volunteer</NavLink>
         </li>
         <li>
-            <NavLink to='/myProfile' className="dropdown dropdown-end">My Profile</NavLink>
+        <div className="dropdown dropdown-end">
+            <div
+                tabIndex={2}
+                role="button"
+                
+            >
+                <span className="font-semibold">My Profile</span>
+            </div>
+            <ul
+                tabIndex={2}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-40 w-52 -mr-32 p-4 gap-4 shadow"
+                 
+            >
+                <li><NavLink className="dropdown-item" to="/add-volunteer-post">Add Volunteer Post</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/manage-my-post">Manage My Post</NavLink></li>
+            </ul>
+            </div>
+
         </li>
+        
         </>
     return (
         <div className="navbar shadow-md bg-base-100 md:px-10">
         <div className="navbar-start">
             <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={1} role="button" className="btn btn-ghost lg:hidden">
                 <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -54,7 +72,7 @@ const Navbar = () => {
                 </svg>
             </div>
             <ul
-                tabIndex={0}
+                tabIndex={1}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow gap-3">
                 {
                     navLink

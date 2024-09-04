@@ -1,33 +1,34 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import {useLocation } from "react-router-dom";
+import { toast} from "react-hot-toast";
 import { AuthContext } from "../../provider/AuthProvider";
+import { Toaster } from "react-hot-toast";
 
 
 const Login = () => {
-    const {signInUser,googleLogin,setUser}=useContext(AuthContext)
+    const {signIn,googleLogin,setUser}=useContext(AuthContext)
 
-    // const location=useLocation()
+    const location=useLocation()
     const navigate=useNavigate()
     
-    const handleLogin=(e)=>{
+    const handleLogin= async(e)=>{
        e.preventDefault()
         const email=e.target.email.value
         const password=e.target.password.value;
 
         // const loginUser={email,password}
 
-        signInUser(email,password)
-        .then(result=>{
-            setUser(result.user)
-            toast.success("Sign In SuccessFully")
-            navigate(location?.state ? location.state : '/')
-        })
-        .catch(error=>{
-            toast.error(error?.message)
-        })
+       try{
+        const result=await signIn(email,password);
+        setUser(result.user)
+        navigate(location?.state ? location.state : '/');
+        toast.success("Sign In Successfully");
+        
+       }
+       catch(err){
+        toast.error(err?.message)
+       }
     }
     const handleGoogle=async()=>{
                 try{
@@ -68,7 +69,10 @@ const Login = () => {
                 <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" required />
             </div>
             <button type="submit" className="block w-full p-3 text-center rounded-sm dark:text-gray-50 dark:bg-violet-600">Sign in</button>
-            <ToastContainer></ToastContainer>
+            <Toaster
+            position="top-center"
+            reverseOrder={false}
+            />
         </form>
         <div className="flex items-center pt-4 space-x-1">
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>

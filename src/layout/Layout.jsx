@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
 
+
 const Layout = () => {
     return (
         <div className="max-w-[1255px] mx-auto">
@@ -15,6 +16,7 @@ const Layout = () => {
 
             {/* footer */}
             <Footer></Footer>
+            
         </div>
     );
 };

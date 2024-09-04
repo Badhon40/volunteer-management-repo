@@ -1,16 +1,15 @@
 import { useContext, useState } from "react";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast, ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import toast, { Toaster } from 'react-hot-toast'
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Register = () => {
-    const {createUser}=useContext(AuthContext)
+    const {createUser,user,setUser,updateUserProfile}=useContext(AuthContext)
     const [showPassword,setShowPassword]=useState(false)
     const location=useLocation()
     const navigate=useNavigate()
-    const handleRegister=e=>{
+    const handleRegister=async e=>{
 
 
         e.preventDefault()
@@ -37,14 +36,18 @@ const Register = () => {
 
         // console.log(newUser)
        
-        createUser(email,password)
-        .then(()=>{
-            toast.success("Register Successfully");
+        try {
+            //2. User Registration
+            const result = await createUser(email, password)
+            // console.log(result)
+            await updateUserProfile(name, photo)
+            setUser({ ...user, photoURL: photo, displayName: name })
             navigate(location?.state ? location.state : '/');
-        })
-        .catch((error)=>{
-            toast.error(error?.message)
-        })
+            toast.success('Signup Successful')
+          } catch (err) {
+            // console.log(err)
+            toast.error(err?.message)
+          }
 
 
     }
@@ -78,7 +81,11 @@ const Register = () => {
                </div>
             </div>
             <button type='submit' className="block w-full p-3 text-center rounded-sm dark:text-gray-50 dark:bg-violet-600">Register</button>
-            <ToastContainer></ToastContainer>
+            {/* <ToastContainer></ToastContainer> */}
+            <Toaster
+            position="top-center"
+            reverseOrder={false}
+            />
         </form>
       
         <p className="text-xs text-center sm:px-6 dark:text-gray-600">Do have an account?

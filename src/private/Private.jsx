@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-import { AuthContext } from '../../firebaseProvider/FirebaseProvider';
+
 import { Navigate, useLocation } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
 // import Lottie from "lottie-react";
 // import Loading from '../../assets/Animation - 1720368541644.json'
 
