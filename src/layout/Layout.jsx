@@ -5,11 +5,13 @@ import Navbar from "../components/Navbar";
 
 const Layout = () => {
     return (
-        <div className="max-w-[1200px] mx-auto">
+        <div className="max-w-[1255px] mx-auto">
             {/* nav */}
                 <Navbar></Navbar>
             {/* outlets */}
-                <Outlet></Outlet>
+               <div className="min-h-[calc(100vh-360px)]">
+               <Outlet></Outlet>
+               </div>
 
             {/* footer */}
             <Footer></Footer>

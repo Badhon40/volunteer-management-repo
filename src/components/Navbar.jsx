@@ -4,15 +4,17 @@ import { AuthContext } from "../provider/AuthProvider";
 
 
 const Navbar = () => {
-    const {user}=useContext(AuthContext)
+    const {user,logOut}=useContext(AuthContext)
 
     const [theme,setTheme]=useState('light')
+    console.log(user)
 
     useEffect(()=>{
         localStorage.setItem('theme',theme)
         const localTheme=localStorage.getItem('theme')
         document.querySelector('html').setAttribute('data-theme',localTheme)
     },[theme])
+
 
     const handleTheme=e=>{
         if(e.target.checked){
@@ -24,18 +26,17 @@ const Navbar = () => {
     }
     const navLink=<>
         <li>
-            <NavLink>Home</NavLink>
+            <NavLink to='/'>Home</NavLink>
         </li>
         <li>
-            <NavLink>Need Volunteer</NavLink>
+            <NavLink to='/needVolunteer'>Need Volunteer</NavLink>
         </li>
         <li>
-            <NavLink>My Profile</NavLink>
+            <NavLink to='/myProfile' className="dropdown dropdown-end">My Profile</NavLink>
         </li>
         </>
     return (
-        <div>
-        <div className="navbar bg-base-100 lg:px-8 py-4">
+        <div className="navbar shadow-md bg-base-100 md:px-10">
         <div className="navbar-start">
             <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -54,17 +55,17 @@ const Navbar = () => {
             </div>
             <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                    {
-                        navLink
-                    }
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow gap-3">
+                {
+                    navLink
+                }
             </ul>
             </div>
-            <a className="font-bold text-3xl font-logo">VolunteerHub
-            </a>
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold font-logo">VolunteerHub</h1>
         </div>
         <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 gap-5">
+            <ul className="menu menu-horizontal px-1 gap-4">
+            
             {
                 navLink
             }
@@ -104,7 +105,7 @@ const Navbar = () => {
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
             </label>
-        {
+            {
                 user?.email? <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
@@ -126,14 +127,14 @@ const Navbar = () => {
                         user?.email
                     }
                    </li>
-                    <li><button>Logout</button></li>
+                    <li><button onClick={()=>logOut()}>Logout</button></li>
                 </ul>
                 </div> :  
                 <Link to='/login'><button className="btn">Login</button></Link>
             }
+
         </div>
-        </div> 
-        </div> 
+        </div>
     );
 };
 

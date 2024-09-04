@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 import { toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../provider/AuthProvider";
@@ -21,7 +20,7 @@ const Register = () => {
         const photo=e.target.photo.value;
         const password=e.target.password.value;
 
-        const newUser={name,email,photo,password}
+        // const newUser={name,email,photo,password}
 
         if (password.length < 6) {
             toast.error("Password contains 6 digits")
@@ -36,7 +35,7 @@ const Register = () => {
             return;
           }
 
-        console.log(newUser)
+        // console.log(newUser)
        
         createUser(email,password)
         .then(()=>{
@@ -44,20 +43,7 @@ const Register = () => {
             navigate(location?.state ? location.state : '/');
         })
         .catch((error)=>{
-            switch (error.code) {
-                case 'auth/email-already-in-use':
-                  toast.error("Email is already in use");
-                  break;
-                case 'auth/invalid-email':
-                  toast.error("Invalid email address");
-                  break;
-                case 'auth/weak-password':
-                  toast.error("Password is too weak");
-                  break;
-                default:
-                  toast.error(`Error: ${error.message}`);
-                  break;
-              }
+            toast.error(error?.message)
         })
 
 
