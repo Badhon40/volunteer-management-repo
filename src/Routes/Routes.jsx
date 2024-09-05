@@ -4,11 +4,12 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Home from "../pages/home/Home";
 import ErrorPage from "../pages/error/ErrorPage";
-import NeedVolunteer from "../pages/needVolunteer/NeedVolunteer";
+import NeedVolunteerAll from "../pages/needVolunteer/NeedVolunteerAll";
 import MyProfile from "../pages/myProfile/MyProfile";
 import AddVolunteerPage from "../pages/addVolunteerPage/AddVolunteerPage";
 import ManageMyPost from "../pages/manageMyPost/ManageMyPost";
 import Private from "../private/Private";
+
 
 
 const Routes = createBrowserRouter([
@@ -19,7 +20,8 @@ const Routes = createBrowserRouter([
         children:[
             {
                 index:true,
-                element:<Home></Home>
+                element:<Home></Home>,
+                loader:()=>fetch(`${import.meta.env.VITE_API_URL}/posts`)
 
             },
             {
@@ -31,8 +33,8 @@ const Routes = createBrowserRouter([
                 element:<Register></Register>
             },
             {
-                path:'/needVolunteer',
-                element:<NeedVolunteer></NeedVolunteer>
+                path:'/needVolunteerAll',
+                element:<NeedVolunteerAll></NeedVolunteerAll>
             },
             {
                 path:'/myProfile',

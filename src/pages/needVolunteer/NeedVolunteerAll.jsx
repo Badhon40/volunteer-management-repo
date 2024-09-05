@@ -1,6 +1,7 @@
 
 
-const NeedVolunteer = () => {
+
+const NeedVolunteerAll = () => {
     return (
         <div>
             
@@ -8,4 +9,4 @@ const NeedVolunteer = () => {
     );
 };
 
-export default NeedVolunteer;
+export default NeedVolunteerAll;

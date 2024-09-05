@@ -41,17 +41,7 @@ const Login = () => {
                 }
       }
 
-    //   const handleGithub=()=>{
-    //     githubLogin()
-    //                 .then(
-    //                     toast.success('Login Success Fully'),
-    //                     navigate(location?.state ? location.state : '/')
     
-    //                 )
-    //                 .catch(
-    //                     toast.error("login Failed")
-    //                 )
-    //   }
  
     return (
       <div className="flex justify-evenly my-14">
