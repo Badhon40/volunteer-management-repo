@@ -1,10 +1,18 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const SuccessStories = () => {
     const [cards,setCards]=useState([])
-    fetch('http://localhost:5000/stories')
-    .then(res=>res.json())
-    .then(data=>setCards(data))
+    // fetch('http://localhost:5000/stories')
+    // .then(res=>res.json())
+    // .then(data=>setCards(data))
+    useEffect(()=>{
+        const getData=async()=>{
+            const {data}=await axios(`${import.meta.env.VITE_API_URL}/stories`)
+            setCards(data)
+        }
+        getData()
+    },[])
     return (
         <>
         <div>
@@ -14,7 +22,7 @@ const SuccessStories = () => {
         <div className="grid px-8 md:px-16 gap-4 grid-cols-1 md:grid-cols-2 mb-10">
             
             {
-                cards.map(card=><><div className="w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                cards.map(card=><div key={card._id}><div className="w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                     <div className="flex justify-center -mt-16 md:justify-end">
                         <img className="object-cover w-20 h-20 border-2 border-blue-500 rounded-full dark:border-blue-400" alt="Testimonial avatar" src={card.photo}/>
                     </div>
@@ -26,7 +34,7 @@ const SuccessStories = () => {
                     <div className="flex justify-end mt-4">
                         <p href="#" className="text-lg font-medium text-blue-600 dark:text-blue-300" tabIndex={0} role="link">{card.location}</p>
                     </div>
-                </div></>)
+                </div></div>)
             }
         </div>
         </>

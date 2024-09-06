@@ -9,7 +9,7 @@ const NeedVolunteer = ({posts}) => {
             <p className="py-3 text-gray-500 text-center">Don't miss your chance to help! Step in now and make a lasting impact with these upcoming volunteer needs.</p>
             <div className="grid justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
                 {
-                    posts.map(post=><PostCard key={post._id} post={post}></PostCard>)
+                    posts.slice(0, 6).map(post=><PostCard key={post._id} post={post}></PostCard>)
                 }
             </div>
 
